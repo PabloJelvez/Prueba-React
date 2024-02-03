@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './App.css';
 import Buscador from './components/Buscador';
 import MiApi from './components/MiApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
