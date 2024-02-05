@@ -7,7 +7,7 @@ import imagen from './assets/img/Portada.jpg';
 import Footer from './components/Footer';
 
 function App() {
-  const [users, setUsers] = useState([])
+  const [products, setProducts] = useState([])
   const [search, setSearch] = useState("");
   const [sortProducts, setSortProducts] = useState("ascendente");
   
@@ -19,8 +19,8 @@ function App() {
         const response = await fetch(route)
         const formatedResponse = await response.json()
         
-        const results = formatedResponse.filter((user) =>
-          user.title.toLowerCase().includes(search.toLocaleLowerCase())
+        const results = formatedResponse.filter((product) =>
+          product.title.toLowerCase().includes(search.toLocaleLowerCase())
         );
         
         results.sort((a, b) => {
@@ -30,7 +30,7 @@ function App() {
            return b.price - a.price
           }
         })
-        setUsers(results)
+        setProducts(results)
       } catch (error) {
         console.log(error)
       }
@@ -44,7 +44,7 @@ function App() {
       <Header imagen={imagen}  />
       <Buscador updateSearch={setSearch} />
       <button className='buttonSort' onClick={() => setSortProducts(sortProducts === "ascendente" ? "descendente" : "ascendente")}>Ordenar por precios</button>
-      <MiApi users={users} />
+      <MiApi products={products} />
       <Footer />
     </>
   )
